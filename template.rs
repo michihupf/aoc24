@@ -1,9 +1,24 @@
 use aoclib::output;
 
 fn main() {
-    let result = 0;
+    let input = input("input");
 
-    // Code goes here
+    // Data preprocessing code goes here
 
-    output(result);
+    p1();
+    p2();
+}
+
+#[inline]
+fn p1() {
+    // part 1 goes here
+
+    // output(result);
+}
+
+#[inline]
+fn p2() {
+    // part 2 goes here
+
+    // output(result);
 }
