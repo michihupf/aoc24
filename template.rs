@@ -1,4 +1,4 @@
-use aoclib::output;
+use aoclib::{input, output};
 
 fn main() {
     let input = input("input");
