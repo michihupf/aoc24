@@ -3,17 +3,16 @@ use aoclib::{input, output};
 fn main() {
     let input = input("input");
 
-    let num_lines = input.lines().count();
-    let mut left = Vec::with_capacity(num_lines);
-    let mut right = Vec::with_capacity(num_lines);
-    for line in input.lines() {
-        let (l, r) = line.split_once("   ").unwrap();
-        let l: u32 = l.parse().unwrap();
-        let r: u32 = r.parse().unwrap();
+    let (mut left, mut right): (Vec<u32>, Vec<u32>) = input
+        .lines()
+        .map(|line| {
+            let (l, r) = line.split_once("   ").unwrap();
+            let l = l.parse::<u32>().unwrap();
+            let r = r.parse::<u32>().unwrap();
 
-        left.push(l);
-        right.push(r);
-    }
+            (l, r)
+        })
+        .unzip();
 
     p1(&mut left, &mut right);
     // vecs are now sorted

@@ -40,8 +40,8 @@ fn is_semi_safe(report: &Report) -> bool {
     for i in 0..report.len() {
         let report_cut: Report = report[..i]
             .iter()
-            .cloned()
-            .chain(report[i + 1..].iter().cloned())
+            .chain(report[i + 1..].iter())
+            .copied()
             .collect();
         if is_safe(&report_cut) {
             return true;
