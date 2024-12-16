@@ -18,7 +18,7 @@ pub fn output(result: impl Display) {
 }
 
 /// A vector in Num^2.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Vec2D<T>
 where
     T: Add<Output = T>,
@@ -82,11 +82,29 @@ where
     }
 }
 
+impl<T> Ord for Vec2D<T>
+where
+    T: Ord + Add<Output = T>,
+{
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        self.x.cmp(&other.x).then_with(|| self.y.cmp(&other.y))
+    }
+}
+
+impl<T> PartialOrd for Vec2D<T>
+where
+    T: Ord + Add<Output = T>,
+{
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
 impl<T> Vec2D<T>
 where
     T: Add<Output = T>,
 {
-    pub fn new(x: T, y: T) -> Self {
+    pub const fn new(x: T, y: T) -> Self {
         Vec2D { x, y }
     }
 }
