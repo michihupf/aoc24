@@ -1,0 +1,8 @@
+Instruction { op: Bst, v: RegA }
+Instruction { op: Bxl, v: Literal(6) }
+Instruction { op: Cdv, v: RegB }
+Instruction { op: Bxc, v: RegC }
+Instruction { op: Bxl, v: Literal(4) }
+Instruction { op: Out, v: RegB }
+Instruction { op: Adv, v: Literal(3) }
+Instruction { op: Jnz, v: Literal(0) }
