@@ -124,3 +124,9 @@ where
         }
     }
 }
+
+// i32 types
+pub const NORTH: Vec2D<i32> = Vec2D::new(0, -1);
+pub const WEST: Vec2D<i32> = Vec2D::new(-1, 0);
+pub const SOUTH: Vec2D<i32> = Vec2D::new(0, 1);
+pub const EAST: Vec2D<i32> = Vec2D::new(1, 0);
