@@ -1,8 +1,4 @@
-use std::{
-    collections::{BTreeSet, HashMap, HashSet},
-    hash::Hash,
-    ops::Index,
-};
+use std::collections::HashSet;
 
 use aoclib::{input, output};
 
@@ -111,11 +107,13 @@ fn bron_kerbosch(
 
     for &v in p.difference(&pivot_neigh) {
         let neigh = neighbors(v, edges);
-        // recursive call on R u {v}, pi = P n N(v) and xi = X n N(v)
-        let ru = r.union(&HashSet::from([v])).copied().collect();
-        let pi = p.intersection(&neigh).copied().collect();
-        let xi = x.intersection(&neigh).copied().collect();
-        let cq = bron_kerbosch(ru, pi, xi, edges);
+        // recursive call on R u {v}, P n N(v) and X n N(v)
+        let cq = bron_kerbosch(
+            r.union(&HashSet::from([v])).copied().collect(),
+            p.intersection(&neigh).copied().collect(),
+            x.intersection(&neigh).copied().collect(),
+            edges,
+        );
         // if this maximal clique is larger then we want to return this at the end
         if cq.len() > best.len() {
             best = cq;
